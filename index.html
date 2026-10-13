@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unify Music | Artist Growth</title>
+  <meta name="description" content="Artist Growth & Spotify Algorithm Service. Custom playlists, targeted ad campaigns and direct track promotion that put your music inside the Spotify algorithm.">
+  <link rel="icon" href="assets/unify-music-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #346aa2;
+      --blue-dark: #24507d;
+      --orange: #e39543;
+      --orange-dark: #c97a2a;
+      --ink: #0f1b2b;
+      --muted: #5a6778;
+      --line: #e3e8ef;
+      --bg: #ffffff;
+      --bg-soft: #f5f8fc;
+      --radius: 18px;
+      --max: 1160px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .nav img { height: 46px; width: auto; }
+    .nav ul { display: flex; gap: 32px; list-style: none; font-weight: 500; font-size: 15px; color: var(--muted); }
+    .nav ul a:hover { color: var(--blue); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 26px; border-radius: 999px;
+      font-weight: 700; font-size: 15px;
+      transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--orange); color: #fff; box-shadow: 0 10px 24px -10px rgba(227,149,67,.8); }
+    .btn-primary:hover { background: var(--orange-dark); }
+    .btn-ghost { border: 2px solid var(--blue); color: var(--blue); }
+    .btn-ghost:hover { background: var(--blue); color: #fff; }
+    .nav .btn { padding: 11px 20px; font-size: 14px; }
+
+    /* Hero */
+    .hero { padding: 110px 0 90px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; inset: -40% -10% auto;
+      height: 700px;
+      background:
+        radial-gradient(circle at 25% 40%, rgba(52,106,162,.16), transparent 55%),
+        radial-gradient(circle at 75% 35%, rgba(227,149,67,.18), transparent 55%);
+      z-index: -1;
+    }
+    .pill {
+      display: inline-block; padding: 7px 16px; border-radius: 999px;
+      background: rgba(52,106,162,.1); color: var(--blue);
+      font-weight: 600; font-size: 13px; letter-spacing: .04em; text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 6.4vw, 76px); line-height: 1.04; font-weight: 900;
+      letter-spacing: -.035em; max-width: 900px; margin: 0 auto 24px;
+    }
+    .hero h1 .o { color: var(--orange); }
+    .hero h1 .b { color: var(--blue); }
+    .hero p.lead { font-size: 20px; color: var(--muted); max-width: 640px; margin: 0 auto 38px; }
+    .hero .ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .stats {
+      margin: 72px auto 0; max-width: 900px;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--line); border-radius: var(--radius); background: #fff;
+    }
+    .stats div { padding: 26px 18px; }
+    .stats div + div { border-left: 1px solid var(--line); }
+    .stats strong { display: block; font-size: 30px; font-weight: 800; color: var(--blue); letter-spacing: -.02em; }
+    .stats span { font-size: 14px; color: var(--muted); }
+
+    /* Sections */
+    section { padding: 100px 0; }
+    .soft { background: var(--bg-soft); }
+    .eyebrow { color: var(--orange); font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 14px; }
+    h2 { font-size: clamp(32px, 4.4vw, 50px); line-height: 1.1; font-weight: 800; letter-spacing: -.03em; margin-bottom: 20px; }
+    .sub { font-size: 18px; color: var(--muted); max-width: 680px; }
+    .head-center { text-align: center; margin-bottom: 60px; }
+    .head-center .sub { margin: 0 auto; }
+
+    /* What we do */
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .split p { color: var(--muted); font-size: 18px; margin-bottom: 18px; }
+    .quote-card {
+      background: linear-gradient(140deg, var(--blue), var(--blue-dark));
+      color: #fff; border-radius: 24px; padding: 48px 42px; position: relative; overflow: hidden;
+    }
+    .quote-card::after {
+      content: ""; position: absolute; right: -70px; bottom: -70px; width: 150px; height: 150px;
+      border-radius: 50%; background: var(--orange); opacity: .9;
+    }
+    .quote-card p { font-size: 26px; font-weight: 700; line-height: 1.3; color: #fff; position: relative; z-index: 1; margin: 0; }
+    .quote-card small { display: block; margin-top: 20px; opacity: .8; font-size: 15px; position: relative; z-index: 1; }
+
+    /* Steps */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .step { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 26px; transition: box-shadow .2s, transform .2s; }
+    .step:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -24px rgba(15,27,43,.35); }
+    .step .num {
+      width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+      background: var(--orange); color: #fff; font-weight: 800; font-size: 18px; margin-bottom: 22px;
+    }
+    .step:nth-child(even) .num { background: var(--blue); }
+    .step h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; letter-spacing: -.01em; }
+    .step p { color: var(--muted); font-size: 15px; }
+
+    /* Ad strategy */
+    .list { list-style: none; display: grid; gap: 14px; }
+    .list li { display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; font-size: 16px; }
+    .list li::before {
+      content: "✓"; flex: none; width: 26px; height: 26px; border-radius: 50%;
+      background: rgba(227,149,67,.15); color: var(--orange-dark); font-weight: 800; font-size: 14px;
+      display: grid; place-items: center; margin-top: 1px;
+    }
+    .budget { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 30px; }
+    .budget div { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+    .budget strong { display: block; font-size: 34px; font-weight: 900; color: var(--orange); letter-spacing: -.03em; }
+    .budget span { font-size: 14px; color: var(--muted); }
+
+    /* Why */
+    .why { background: var(--ink); color: #fff; }
+    .why .sub { color: #aab6c6; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+    .why-item { border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); padding: 28px; background: rgba(255,255,255,.03); }
+    .why-item .ic { font-size: 22px; color: var(--orange); font-weight: 900; margin-bottom: 12px; }
+    .why-item p { color: #d6dde7; font-size: 16px; }
+
+    /* Deliverables */
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { border: 1px solid var(--line); border-radius: var(--radius); padding: 32px 28px; background: #fff; border-top: 4px solid var(--blue); }
+    .card:nth-child(odd) { border-top-color: var(--orange); }
+    .card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+    .card p { color: var(--muted); font-size: 15px; }
+
+    /* Examples / results */
+    .examples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .ex {
+      display: flex; flex-direction: column; justify-content: space-between; gap: 30px;
+      border-radius: var(--radius); padding: 34px 30px; min-height: 230px;
+      background: #fff; border: 1px solid var(--line); transition: transform .2s, box-shadow .2s;
+    }
+    .ex:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -24px rgba(15,27,43,.35); }
+    .ex .tag { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--blue); }
+    .ex h3 { font-size: 24px; font-weight: 800; letter-spacing: -.02em; margin-top: 8px; }
+    .ex .go { font-weight: 700; color: var(--orange); }
+    .ex.feature { background: linear-gradient(140deg, var(--orange), var(--orange-dark)); border: 0; color: #fff; }
+    .ex.feature .tag, .ex.feature .go { color: #fff; }
+
+    /* CTA */
+    .cta-band {
+      background: linear-gradient(120deg, var(--blue), var(--blue-dark));
+      color: #fff; border-radius: 28px; padding: 72px 48px; text-align: center;
+    }
+    .cta-band h2 { color: #fff; }
+    .cta-band p { color: #d6e3f2; font-size: 18px; max-width: 600px; margin: 0 auto 34px; }
+
+    footer { padding: 50px 0; border-top: 1px solid var(--line); }
+    .foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .foot img { height: 40px; width: auto; }
+    .foot p { color: var(--muted); font-size: 14px; }
+
+    @media (max-width: 960px) {
+      .steps { grid-template-columns: 1fr 1fr; }
+      .cards, .examples { grid-template-columns: 1fr 1fr; }
+      .split { grid-template-columns: 1fr; gap: 40px; }
+      .nav ul { display: none; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 16px; }
+      section { padding: 72px 0; }
+      .hero { padding: 72px 0 64px; }
+      .steps, .cards, .examples, .budget { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .stats div + div { border-left: 0; border-top: 1px solid var(--line); }
+      .nav img { height: 38px; }
+      .cta-band { padding: 52px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top"><img src="assets/unify-music-logo.png" alt="Unify Music"></a>
+    <ul>
+      <li><a href="#what-we-do">What We Do</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#ad-strategy">Ad Strategy</a></li>
+      <li><a href="#what-you-get">What You Get</a></li>
+      <li><a href="#results">Results</a></li>
+    </ul>
+    <a class="btn btn-primary" href="#get-started">Get Started</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="pill">Artist Growth &amp; Spotify Algorithm Service</span>
+      <h1>Put your music <span class="b">inside</span> the <span class="o">Spotify algorithm</span>.</h1>
+      <p class="lead">Built for artists who understand the game. Custom playlists, targeted ad campaigns and direct track promotion that drive real, quality streams.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#get-started">Book Your Onboarding Call →</a>
+        <a class="btn btn-ghost" href="#how-it-works">How It Works</a>
+      </div>
+      <div class="stats">
+        <div><strong>$5–$10/day</strong><span>per playlist &amp; track campaign</span></div>
+        <div><strong>Every 4 days</strong><span>campaigns reviewed &amp; optimised</span></div>
+        <div><strong>Tier 1 &amp; 2</strong><span>high-value markets targeted</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section id="what-we-do" class="soft">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">What We Do</p>
+        <h2>Real listeners. Real streams. Real algorithmic growth.</h2>
+        <p>We build and promote custom Spotify playlists tailored to your sound. Through targeted ad campaigns, we drive real, quality streams from listeners who are already fans of artists similar to you, feeding the Spotify algorithm exactly what it needs to start working in your favour.</p>
+      </div>
+      <div class="quote-card">
+        <p>This isn't about vanity numbers.</p>
+        <small>It's about placing your music inside the algorithm so Spotify's Radio and Autoplay features start matching you with the right listeners, and those listeners keep coming back.</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how-it-works">
+    <div class="wrap">
+      <div class="head-center">
+        <p class="eyebrow">How It Works</p>
+        <h2>Four steps to algorithmic growth</h2>
+        <p class="sub">A dual approach of playlist promotion and direct track ads that compounds stream volume on your release.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Custom Playlist Creation</h3>
+          <p>We create playlists curated around your genre and sound. Each playlist is designed to attract listeners who already love music like yours.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Targeted Ad Campaigns</h3>
+          <p>We run paid ads to each playlist &amp; recent releases, targeting audiences built around similar artists and relevant locations. Alongside playlist promotion, we run direct track ads targeting Tier 1 and Tier 2 markets, high-value listeners in regions that carry the most algorithmic weight. This dual approach compounds stream volume on your advertised track, increasing its reach and engagement simultaneously. Campaigns are optimised every 4 days for maximum efficiency.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Algorithm Activation</h3>
+          <p>Quality streams from engaged listeners signal to Spotify that your music belongs alongside top artists in your genre. As stream volume and listener engagement grow across both your playlists and direct track promotion, Spotify's algorithm begins surfacing your music in Radio sessions, Autoplay, and editorial features like Discover Weekly.</p>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <h3>Profile Growth</h3>
+          <p>Your artist profile builds genuine, concentrated listenership, the kind that grows your monthly listeners, saves, and follows organically.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ad strategy -->
+  <section id="ad-strategy" class="soft">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">The Ad Strategy</p>
+        <h2>Full control. Real-time optimisation.</h2>
+        <p>All ad campaigns are managed through my business portfolio, giving me full control to optimize in real time. If one playlist or track is outperforming the others, I can scale spend immediately without delays.</p>
+        <p>We will get your account connected to my business portfolio on the onboarding call.</p>
+        <div class="budget">
+          <div><strong>$5/day</strong><span>Starting spend per playlist &amp; track campaign</span></div>
+          <div><strong>$10/day</strong><span>Scaled as results come in</span></div>
+        </div>
+      </div>
+      <ul class="list">
+        <li>Campaigns start at $5/day per playlist &amp; track campaign and scale to $10/day as results come in.</li>
+        <li>Every campaign is reviewed after 4 days, underperforming creatives are replaced ASAP.</li>
+        <li>Playlist ads are targeted around similar artists, genres, and relevant locations to maximise listener quality.</li>
+        <li>Track ads run simultaneously to Tier 1 and Tier 2 audiences, accelerating stream growth on your priority release.</li>
+        <li>I use my own SubmitHub account to handle all playlist pitching, no extra setup needed from you.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Why it works -->
+  <section class="why">
+    <div class="wrap">
+      <div class="head-center">
+        <p class="eyebrow">Why This Works</p>
+        <h2>The Spotify algorithm, explained</h2>
+        <p class="sub">Spotify's algorithm is driven by Radio streams. When listeners engage with your music through curated playlists and direct track promotion, Spotify begins placing you alongside similar artists in Autoplay and Radio sessions. This creates a compounding effect:</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-item"><div class="ic">01</div><p>Listeners who enjoy similar artists discover your music naturally.</p></div>
+        <div class="why-item"><div class="ic">02</div><p>Direct track promotion to Tier 1 and Tier 2 markets accelerates stream volume, increasing the speed at which Spotify registers your track as relevant.</p></div>
+        <div class="why-item"><div class="ic">03</div><p>Consistent, engaged streams signal to Spotify that your music belongs in the algorithm.</p></div>
+        <div class="why-item"><div class="ic">04</div><p>Your artist profile builds a concentrated, engaged fanbase — not random one-off plays.</p></div>
+        <div class="why-item"><div class="ic">05</div><p>Algorithmic playlists like Discover Weekly and Radio start featuring you more frequently.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you get -->
+  <section id="what-you-get">
+    <div class="wrap">
+      <div class="head-center">
+        <p class="eyebrow">What You Get</p>
+        <h2>Everything handled for you</h2>
+      </div>
+      <div class="cards">
+        <div class="card"><h3>Custom Playlists</h3><p>Built and managed on my account, matched to your genre and style. This helps grow the streams on your songs as active listeners keep coming back to the playlist to listen.</p></div>
+        <div class="card"><h3>Fully Managed Ad Campaigns</h3><p>All ads created, tested, and scaled, no involvement needed from you.</p></div>
+        <div class="card"><h3>Direct Track Promotion</h3><p>Targeted ads run to Tier 1 and Tier 2 listeners to boost streams on your priority release.</p></div>
+        <div class="card"><h3>SubmitHub Pitching</h3><p>Handled entirely through my account for additional playlist exposure.</p></div>
+        <div class="card"><h3>Quality Streams</h3><p>Real streams from targeted listeners in relevant markets around similar artists.</p></div>
+        <div class="card"><h3>Algorithm Placement</h3><p>Positioning your music to be matched by Spotify's Radio and Autoplay systems.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Examples & results -->
+  <section id="results" class="soft">
+    <div class="wrap">
+      <div class="head-center">
+        <p class="eyebrow">Examples &amp; Results</p>
+        <h2>See the work</h2>
+      </div>
+      <div class="examples">
+        <a class="ex" href="https://www.instagram.com/p/DYDs2HkPFEY/" target="_blank" rel="noopener">
+          <div><span class="tag">Example</span><h3>Single Ad</h3></div>
+          <span class="go">View on Instagram →</span>
+        </a>
+        <a class="ex" href="https://drive.google.com/drive/u/0/folders/1L9vzCsjVvMuScxLSHWaV26B5jUU8Rry7" target="_blank" rel="noopener">
+          <div><span class="tag">Example</span><h3>Playlist Ad</h3></div>
+          <span class="go">View on Google Drive →</span>
+        </a>
+        <a class="ex feature" href="https://canva.link/xqvyd05m1ddbcf0" target="_blank" rel="noopener">
+          <div><span class="tag">Results</span><h3>See Our Results</h3></div>
+          <span class="go">View results →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="get-started">
+    <div class="wrap">
+      <div class="cta-band">
+        <h2>Ready to grow with the algorithm?</h2>
+        <p>Book your onboarding call and we'll get your account connected to my business portfolio so your campaigns can go live.</p>
+        <a class="btn btn-primary" href="#get-started">Book Your Onboarding Call →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <img src="assets/unify-music-logo.png" alt="Unify Music">
+    <p>Artist Growth &amp; Spotify Algorithm Service. Built for artists who understand the game.</p>
+  </div>
+</footer>
+
+</body>
+</html>
